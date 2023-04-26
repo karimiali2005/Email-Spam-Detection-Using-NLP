@@ -1,0 +1,95 @@
+﻿@model CheckEmail
+@{
+ 
+    Layout = null;
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <title>Email Spam Detection</title>
+    <style>
+        /* Add some basic styles to the body and form */
+        body {
+            background: linear-gradient( 90deg, rgb(252, 96, 56), 30%, rgb(229, 55, 52) 50%, rgb(249, 4, 0) 100% );
+            background-size: cover;
+            font-family: Arial, sans-serif;
+        }
+
+        form {
+            max-width: 600px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: rgba(255, 255, 255, 0.8);
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Add some styles to the input and button */
+        textarea {
+            display: block;
+            margin: 0 auto 20px;
+            padding: 15px;
+            border: none;
+            border-radius: 30px;
+            width: 80%;
+            font-size: 20px;
+            text-align: center;
+            background-color: rgba(255, 255, 255, 0.8);
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        button[type="submit"] {
+            display: block;
+            margin: 0 auto;
+            padding: 15px 50px;
+            border: none;
+            border-radius: 30px;
+            font-size: 20px;
+            background-color: #f44336;
+            color: #fff;
+            text-align: center;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+            cursor: pointer;
+        }
+
+            button[type="submit"]:hover {
+                background-color: #ff7f6e;
+            }
+
+        h1 {
+            color: #f44336;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    @using (Html.BeginForm("Index", "Home", FormMethod.Post))
+
+    {
+        <textarea rows="10" cols="50" asp-for="@Model.txtBody" value="@Model.txtBody" id="txtBody" name="txtBody" placeholder="Enter your email content...">
+
+        </textarea >
+      
+        <button type="submit">Submit</button>
+        @if(!string.IsNullOrEmpty( Model.Answer))
+        {
+            if (Model.Answer=="0")
+            {
+                <h1 style="color:rgb(43, 174, 148)" id="output">It is safe</h1>
+            }
+            else
+            {
+                <h1 style="color:red" id="output">It is spam</h1>
+            }
+
+        }
+        
+    }
+
+</body>
+</html>
+
+
+
+
